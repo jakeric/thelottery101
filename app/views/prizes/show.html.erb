@@ -1,0 +1,37 @@
+<% los = Ticket.find(@prize.ticket_id) if (@prize != nil && @prize.ticket_id != nil) %>
+
+
+
+<div class="container">
+
+<%= button_to "Zurück zur Losung", prizes_path, class: "btn btn-link", method: :get %>
+
+  <div>
+    <div class="title">
+      <h1><b>Preis: </b><%= @prize.title %></h1>
+    </div>
+    <div class="winning-los">
+      <h1><b>Gewinnerlos: </b><%= los.ticket if (@prize != nil && @prize.ticket_id != nil) %></h1>
+    </div>
+    <div class="winner-name">
+    <h3><b>Ticket gehört: </b><%= los.name if (@prize != nil && @prize.ticket_id != nil && los.name != nil) %></h3>
+    </div>
+
+    <% if (@prize != nil && @prize.ticket_id != nil) %>
+      <div class="row">
+        <%= simple_form_for los, url: update_path, method: :post do |f| %>
+          <div class="col-md-4 col-xs-12">
+            <%= f.input :name, label: 'Namen des Gewinners eintragen: ' %>
+            <%= f.input :ticket_id, :as => :hidden, :input_html => { :value => @prize.ticket_id }%>
+            <%= f.input :prize_id, :as => :hidden, :input_html => { :value => @prize.id }%>
+            <%= f.button :submit, 'Namen updaten', class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+  <div class="show-image">
+    <img src="<%= @prize.image %>" style="height: 500px;">
+  </div>
+</div>

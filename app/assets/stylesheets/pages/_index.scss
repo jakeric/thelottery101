@@ -1,2 +1,45 @@
 // Import page-specific CSS files here.
 @import "home";
+
+.first-counter {
+  text-align: center;
+  h1 {
+    font-size: 300%;
+  }
+  h3 {
+    font-size: 150%;
+  }
+}
+
+.button-container {
+  height: 70px;
+  width: 100%;
+}
+
+.los-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.los-winner-box {
+  text-align: center;
+  h3 {
+    font-size: 90px;
+  }
+}
+
+.save-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 5px 5px 5px;
+}
+
+.new-ticket-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 5px 5px 5px;
+}

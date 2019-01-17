@@ -1,0 +1,18 @@
+
+<table style="width:70%">
+  <tr>
+    <th>Preis</th>
+    <th>Geweinnlos</th>
+    <th>Name</th>
+  </tr>
+<% @prizes.each do |prize| %>
+<% los = Ticket.find(prize.ticket_id) if prize.ticket_id != nil %>
+<% win_ticket = los.ticket if prize.ticket_id != nil %>
+<% win_name = los.name if prize.ticket_id != nil %>
+  <tr>
+    <td><%= prize.title %></td>
+    <td><%= win_ticket %></td>
+    <td><%= win_name %></td>
+  </tr>
+<% end %>
+</table>

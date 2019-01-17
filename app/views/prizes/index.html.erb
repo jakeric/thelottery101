@@ -1,0 +1,91 @@
+<div class="container first-counter">
+  <h1>Flaconi - Lotterie</h1> <h4>(Anzahl Lose: <%= Ticket.count %>)</h4>
+  <h3>Preise noch offen:   <b><%= Prize.where("ticket_id IS NULL").count %></b></h3>
+  <h3>Preise verlost:   <b><%= Prize.where("ticket_id IS NOT NULL").count %></b></h3>
+</div>
+
+
+<% if @random_ticket.nil? && @random_prize.nil? %>
+  <% x = "Ziehe ein Los"  %>
+  <% winner_ticket_id = nil %>
+<% elsif @random_ticket != nil && @random_prize.nil? %>
+  <% x = "Ziehe einen Preis"  %>
+<% winner_ticket_id = @random_ticket.id %>
+  <% else  %>
+<% winner_ticket_id = @winner_ticket.id %>
+  <% end %>
+
+<% winner_prize_id = @random_prize.id if @random_prize != nil %>
+
+<% hidden = "display: none;" if @random_prize != nil%>
+<% visible = "visibility: hidden;" unless @random_prize != nil %>
+
+<div class="container button-container box">
+  <div class="los-button" style="<%= hidden %>">
+    <%= button_to "#{x}", { action: "get_random_ticket", ticket_id: winner_ticket_id}, class: "btn btn-primary btn-lg", method: :post %>
+  </div>
+
+  <div class="los-button" style="<%= visible %>">
+    <div class="save-button" >
+      <%= button_to "Speichern", { action: "save_ticket_to_prize", ticket_id: winner_ticket_id, prize: winner_prize_id}, class: "btn btn-success btn-sm", method: :post %>
+    </div>
+    <div class="new-ticket-button">
+      <%= button_to "Anderes Los ziehen", prizes_path, class: "btn btn-secondary btn-xs", method: :get %>
+    </div>
+  </div>
+</div>
+
+
+<div class="container los-winner-box">
+  <h3><% if @random_ticket.nil? && @winner_ticket.nil? %>
+    <%= "Winner: ____" %>
+    <% else %>
+    <% if @winner_ticket.nil? %>
+    <%= "Winner: #{@random_ticket.ticket}" %>
+    <% else %>
+    <%= "Winner: #{@winner_ticket.ticket}" %>
+    <% end %>
+
+    <% end %>
+  </h3>
+
+  <h3><% if @random_prize.nil? %>
+    <%= "Prize: ___________" %>
+    <% else %>
+    <%= "Prize: #{@random_prize.title}" %>
+    <% end %>
+  </h3>
+</div>
+
+
+<div class="container-card">
+  <div class="row card-row">
+    <% @prizes.each do |prize| %>
+    <div class="col-xs-12 col-sm-4 col-md-3">
+      <div class="buoy-card">
+
+
+        <%= link_to prize_path(prize), html_options = { class: 'big-card-link' } do %>
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('<%= prize.image %>'); background-position: 50% 50%; background-repeat: no-repeat;">
+
+        </div>
+
+        <div class="card-description">
+          <h2><%= prize.title %></h2>
+          <% if prize.ticket_id.nil? %>
+          <h6>offen</h6>
+          <% else %>
+          <h6><%= "Gewinnerlos: #{prize.ticket.ticket}" %></h6>
+          <% end %>
+        </div>
+
+        <% end %>
+
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+<%= button_to "Alle Lose neu ziehen", destroy_path %>

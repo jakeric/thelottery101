@@ -21,7 +21,7 @@ auto = "https://i.ebayimg.com/images/g/GYcAAOSwYEhalsHM/s-l640.jpg"
 flaconi = "https://testundliebe.de/wp-content/uploads/2018/05/Flaconi-Box-Ciao-Bella-2.jpg"
 speaker = "https://www.staples-3p.com/s7/is/image/Staples/m005807470_sc7?$splssku$"
 powerbank = "https://static.123bdcdn.com/img/26991/146802.jpg&width=585&height=439&q=100"
-uhr = "https://www.picclickimg.com/d/l400/pict/221114977545_/sv24-Trend-Armbanduhr-Silikon-Watch-Uhr-Damen-Herren.jpg"
+uhr = "https://i.ebayimg.com/images/g/C14AAOSwuxFYypV8/s-l1600.jpg"
 
 image_array = [samsung_tv,samsung_tv,mac_pro,iphone,iphone,iphone,samsung_s9,samsung_s9,samsung_s9,fahrrad,fahrrad,ps4_pro,ps4_pro,buerste,buerste,buerste,amazon,amazon,amazon,amazon,amazon,amazon,amazon,amazon,amazon,amazon,amazon,messer,auto,auto,flaconi,flaconi,flaconi,flaconi,flaconi,flaconi,flaconi,flaconi,speaker,speaker,speaker,speaker,speaker,powerbank,uhr,uhr,uhr,uhr,uhr,uhr]
 
